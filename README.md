@@ -1,3 +1,8 @@
+## Purpose of clone
+
+Rename the repository, so that binary in $GOPATH/bin will be *go-get-shallow-git* instead of *git*. I wanted to add this workarround permanently using  ~/.bashrc hack without polluting gobal git command.
+
+
 # How to use shallow clones for `go get`
 
 This is a little hack to use shallow clones for new git checkouts with `go get`. Unfortunately for Gophers, [this has been an open issue for three years counting](https://github.com/golang/go/issues/13078) without a workable solution aside from patching the go toolchain yourself. This solution utilizes a *git* wrapper that determines if a pull/clone is happening and then makes sure it is shallow. 
