@@ -5,13 +5,25 @@ This is a little hack to use shallow clones for new git checkouts with `go get`.
 To install it you do 
 
 ```
-$ go get github.com/schollz/git
+$ go get github.com/arunmj/go-get-shallow-git
+```
+add a symlink `$GOPATH/bin/go-get-shallow-git` to a location not covered in $PATH
+
+replace <TARGETDIR> with convinient directory path
+  
+```
+$ ln -s $GOPATH/bin/go-get-shallow-git <TARGETDIR>/git
 ```
 
-The *git*-wrapper tool is named *"git"* on purpose so that your GOPATH can be prepended to the PATH and then the *git*-wrapper substituted for the real *git* (`/usr/bin/git`). So then, to activate shallow cloning all you have to do is: 
+The *git*-wrapper tool is symlinked to *"git"* in \<TARGETDIR\>, so that you can add an alias to *go* command with <TARGETDIR> prepended to the PATH and then the *git*-wrapper will be substituted for the real *git* (`/usr/bin/git`). 
 
 ```
-$ export PATH=$GOPATH/bin:$PATH
+$ alias go="PATH=<TARGETDIR>:\$PATH go" 
+```
+OR use *go_get* instead of *go get*
+
+```
+$ alias go_get="PATH=<TARGETDIR>:\$PATH go get" 
 ```
 
 which you can add to your `.bashrc` files if you want it to be permanent. This way, the wrapper will aways be used and the wrapper will force cloning to be shallow.
@@ -50,6 +62,8 @@ root@d9208178f1fa:/go# du -sh .
 # Acknowledgements
 
 Thanks [tscholl2](https://github.com/tscholl2) for the idea.
+
+Thanks [schollz](https://github.com/schollz/git) for the code
 
 # License
 
